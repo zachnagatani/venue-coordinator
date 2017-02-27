@@ -1,0 +1,42 @@
+{
+  "name": "venue-coordinator",
+  "version": "1.0.0",
+  "description": "Venue Coordinator App",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zachnagatani/venue-coordinator.git"
+  },
+  "author": "Zach Nagatani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zachnagatani/venue-coordinator/issues"
+  },
+  "homepage": "https://github.com/zachnagatani/venue-coordinator#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.16.1",
+    "bootstrap": "^3.3.7",
+    "express": "^4.14.1",
+    "express-jwt": "^5.1.0",
+    "jquery": "^3.1.1",
+    "jsonwebtoken": "^7.3.0",
+    "material-ui": "^0.17.0",
+    "mongo": "^0.1.0",
+    "mongoose": "^4.8.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
+    "react-tap-event-plugin": "^2.0.1",
+    "redux": "^3.6.0"
+  },
+  "devDependencies": {
+    "redux-devtools": "^3.3.2"
+  }
+}
