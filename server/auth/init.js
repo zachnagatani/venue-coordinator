@@ -1,7 +1,7 @@
 const passport = require('passport'),
-      User = require('./models/user'),
-      login = require('./strategies/login'),
-      signup = require('./strategies/signup');
+      User = require('./model/user'),
+      login = require('./strategies/local/login'),
+      signup = require('./strategies/local/signup');
 
 module.exports = passport => {
     passport.serializeUser((user, done) => {
