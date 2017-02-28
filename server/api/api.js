@@ -18,19 +18,55 @@ module.exports = (app) => {
         res.json(req.user.generateJwt(req.user.username, req.user._id));
     });
 
-    app.post('/api/add/venue', (req, res) => {
-        const newVenue = new Venue({
-            venueId: req.body.venueName
+    app.post('/api/venue/add', (req, res) => {
+        Venue.findById({
+            _id: req.body.venueId
+        }, (err, venue) => {
+            if (venue) {
+                res.send('venue already exists');
+                return;
+            }
+
+            const newVenue = new Venue({
+                _id: req.body.venueId
+            });
+
+            newVenue.save(err => {
+                if (err) {
+                    return console.log(err);
+                }
+
+                res.json(newVenue);
+            });
         });
+    });
 
-        // TODO: findOne?
-
-        newPoll.save(err => {
+    app.patch('/api/venue/increment', (req, res) => {
+        Venue.findById({
+            _id: req.body.venueId
+        }, (err, venue) => {
             if (err) {
                 return console.log(err);
             }
 
-            res.json(newPoll);
+            if (!venue.users.includes(req.body.username)) {
+                Venue.findByIdAndUpdate({
+                    _id: req.body.venueId,
+                }, {
+                    $inc: {count: 1},
+                    $push: {users: req.body.username}
+                }, {
+                    new: true
+                }, (err, venue) => {
+                    if (err) {
+                        return console.log(err);
+                    }
+
+                    res.json(venue);
+                });
+            } else {
+                res.send('DAT USER IN DER BRUH');
+            }
         });
     });
 };
