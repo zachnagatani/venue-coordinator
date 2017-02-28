@@ -69,4 +69,33 @@ module.exports = (app) => {
             }
         });
     });
+
+    app.patch('/api/venue/decrement', (req, res) => {
+        Venue.findById({
+            _id: req.body.venueId
+        }, (err, venue) => {
+            if (err) {
+                return console.log(err);
+            }
+
+            if (venue.users.includes(req.body.username)) {
+                Venue.findByIdAndUpdate({
+                    _id: req.body.venueId,
+                }, {
+                    $inc: {count: -1},
+                    $pull: {users: req.body.username}
+                }, {
+                    new: true
+                }, (err, venue) => {
+                    if (err) {
+                        return console.log(err);
+                    }
+
+                    res.json(venue);
+                });
+            } else {
+                res.send('DAT USER NOT IN DER BRUH');
+            }
+        });
+    });
 };
