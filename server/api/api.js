@@ -1,10 +1,11 @@
-const passport = require('passport');
+const passport = require('passport'),
+      Venue = require('../venue/model/venue');
 
 module.exports = (app) => {
     /** API ENDPOINT CHECK LIST:
      * --Signup--
      * --Log In--
-     * Venue
+     * Add Venue
      * Going
      * Not Going
      */
@@ -18,6 +19,18 @@ module.exports = (app) => {
     });
 
     app.post('/api/add/venue', (req, res) => {
+        const newVenue = new Venue({
+            name: req.body.venueName
+        });
 
+        // TODO: findOne?
+
+        newPoll.save(err => {
+            if (err) {
+                return console.log(err);
+            }
+
+            res.json(newPoll);
+        });
     });
 };
