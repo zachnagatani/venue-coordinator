@@ -20,7 +20,7 @@ module.exports = (app) => {
 
     app.post('/api/add/venue', (req, res) => {
         const newVenue = new Venue({
-            name: req.body.venueName
+            venueId: req.body.venueName
         });
 
         // TODO: findOne?

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'),
       Schema = mongoose.Schema,
       venueSchema = new Schema({
-          name: {type: String, required: true, index: {unique: true}},
+          venueId: {type: String, required: true, index: {unique: true}},
           going: {type: Number, default: 0}
       });
 
