@@ -4,7 +4,8 @@ const express = require('express'),
       mongoose = require('mongoose'),
       bodyParser = require('body-parser'),
       passport = require('passport'),
-      initPassport = require('./auth/init');
+      initPassport = require('./auth/init'),
+      apiController = require('./api/api');
 
 mongoose.connect(process.env.MONGOLAB_URI);
 
@@ -23,5 +24,7 @@ initPassport(passport);
 app.get('/', (req, res) => {
     res.sendFile('index.html');
 });
+
+apiController(app);
 
 app.listen(port);
