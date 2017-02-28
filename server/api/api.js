@@ -5,9 +5,9 @@ module.exports = (app) => {
     /** API ENDPOINT CHECK LIST:
      * --Signup--
      * --Log In--
-     * Add Venue
-     * Going
-     * Not Going
+     * --Add Venue--
+     * --Going-- TODO: Remove outer db call. $nin?
+     * --Not Going-- TODO: ""^
      */
 
     app.post('/api/signup', passport.authenticate('signup'), (req, res) => {
