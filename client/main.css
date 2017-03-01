@@ -31,5 +31,9 @@ body {
   .col {
     width: 100% !important; } }
 
-.search-bar {
-  margin: auto; }
+.container--home {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }

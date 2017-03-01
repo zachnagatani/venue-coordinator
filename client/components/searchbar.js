@@ -8,7 +8,7 @@ class SearchBar extends React.Component {
 
     render() {
         return (
-            <TextField hintText="Enter your city" floatingLabelText="Search for Venues" multiLine={true} className="col search-bar"  />
+            <TextField hintText="Enter your city" floatingLabelText="Search for Venues" multiLine={true} className="search-bar"  />
         );
     }
 };
