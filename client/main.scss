@@ -26,6 +26,11 @@ body {
     height: 36px;
 }
 
+.navbar {
+    position: fixed;
+    width: 100%;
+}
+
 // Flex Grid System: from CSS Tricks @ https://css-tricks.com/dont-overthink-flexbox-grids/
 .flex-grid {
     display: flex;
@@ -85,4 +90,16 @@ body {
 
 .venue ~ .venue {
     margin-top: 0;
+}
+
+// Signup Styles
+.container--signup {
+    display: flex;
+}
+
+.form--signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
 }
