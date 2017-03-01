@@ -15,8 +15,12 @@ body {
   height: 100%;
   margin: 0 auto; }
 
+.btn {
+  height: 36px; }
+
 .flex-grid {
-  display: flex; }
+  display: flex;
+  align-items: flex-end; }
 
 .col {
   flex: 1;
@@ -27,9 +31,17 @@ body {
 
 @media (max-width: 600px) {
   .flex-grid {
-    display: block; }
+    display: block;
+    text-align: center; }
   .col {
-    width: 100% !important; } }
+    width: 100% !important; }
+  .search-bar {
+    text-align: left; } }
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both; }
 
 .container--home {
   height: 100%;
@@ -37,3 +49,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center; }
+
+.going-chip {
+  float: right; }
+
+.venue {
+  margin: 40px 0; }
+
+.venue ~ .venue {
+  margin-top: 0; }

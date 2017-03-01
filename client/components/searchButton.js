@@ -3,7 +3,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 const SearchButton = props => {
     return (
-        <RaisedButton label="Search" />
+        <RaisedButton label="Search" className="btn" />
     );
 };
 

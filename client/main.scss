@@ -22,9 +22,14 @@ body {
     margin: 0 auto;
 }
 
+.btn {
+    height: 36px;
+}
+
 // Flex Grid System: from CSS Tricks @ https://css-tricks.com/dont-overthink-flexbox-grids/
 .flex-grid {
     display: flex;
+    align-items: flex-end;
 }
 
 .col {
@@ -40,11 +45,24 @@ body {
 @media (max-width: 600px) {
   .flex-grid {
     display: block;
+    text-align: center;
   }
 
   .col {
       width: 100%!important;
   }
+
+  // Fix search-bar text alignment
+  .search-bar {
+      text-align: left;
+  }
+}
+
+// Helpers
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 // Home Styles
@@ -54,4 +72,17 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+// Venues Styles
+.going-chip {
+    float: right;
+}
+
+.venue {
+    margin: 40px 0;
+}
+
+.venue ~ .venue {
+    margin-top: 0;
 }
