@@ -24,7 +24,7 @@ class NavBar extends React.Component {
         return (
             <div>
                 <AppBar title="Venue Coordinator" onLeftIconButtonTouchTap={this.handleToggle} />
-                <Drawer docked={false} open={this.state.open}>
+                <Drawer docked={false} open={this.state.open} onRequestChange={(open) => this.setState({open})}>
                     <MenuItem onTouchTap={this.handleClose}>Hello, World</MenuItem>
                 </Drawer>
             </div>

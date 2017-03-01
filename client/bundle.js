@@ -12955,7 +12955,7 @@ class NavBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_AppBar___default.a, { title: 'Venue Coordinator', onLeftIconButtonTouchTap: this.handleToggle }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_2_material_ui_Drawer___default.a,
-                { docked: false, open: this.state.open },
+                { docked: false, open: this.state.open, onRequestChange: open => this.setState({ open }) },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     __WEBPACK_IMPORTED_MODULE_3_material_ui_MenuItem___default.a,
                     { onTouchTap: this.handleClose },
