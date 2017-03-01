@@ -9,18 +9,23 @@ class NavBar extends React.Component {
 
         this.state = {open: false};
         this.handleToggle = this.handleToggle.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
     handleToggle() {
         this.setState({open: !this.state.open});
     }
 
+    handleClose() {
+        this.setState({open: false});
+    }
+
     render() {
         return (
             <div>
                 <AppBar title="Venue Coordinator" onLeftIconButtonTouchTap={this.handleToggle} />
-                <Drawer open={this.state.open}>
-                    <MenuItem>Hello, World</MenuItem>
+                <Drawer docked={false} open={this.state.open}>
+                    <MenuItem onTouchTap={this.handleClose}>Hello, World</MenuItem>
                 </Drawer>
             </div>
         );
