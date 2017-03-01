@@ -47536,13 +47536,22 @@ class SignupForm extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 
     render() {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'form',
-            { className: 'form--signup' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { hintText: 'Enter a username', floatingLabelText: 'Username', multiLine: true, id: 'username', name: 'username' }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { hintText: 'Enter an email', floatingLabelText: 'Email', multiLine: true, id: 'email', name: 'email', type: 'email' }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { hintText: 'Enter a password', floatingLabelText: 'Password', multiLine: true, id: 'password', name: 'password', type: 'password' }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { hintText: 'Reenter your password', floatingLabelText: 'Reenter Password', multiLine: true, id: 'verify', name: 'verify', type: 'password' }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_RaisedButton___default.a, { label: 'Sign Up' })
+            'main',
+            { className: 'main--signup' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'h1',
+                null,
+                'Sign Up'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'form',
+                { className: 'form--signup' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { hintText: 'Enter a username', floatingLabelText: 'Username', multiLine: true, id: 'username', name: 'username' }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { hintText: 'Enter an email', floatingLabelText: 'Email', multiLine: true, id: 'email', name: 'email', type: 'email' }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { hintText: 'Enter a password', floatingLabelText: 'Password', multiLine: true, id: 'password', name: 'password', type: 'password' }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { hintText: 'Reenter your password', floatingLabelText: 'Reenter Password', multiLine: true, id: 'verify', name: 'verify', type: 'password' }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_RaisedButton___default.a, { label: 'Sign Up' })
+            )
         );
     }
 };

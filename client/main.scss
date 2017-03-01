@@ -16,6 +16,10 @@ body {
     height: 100%;
 }
 
+h1 {
+    text-align: center;
+}
+
 .container {
     max-width: 80%;
     height: 100%;
@@ -26,10 +30,10 @@ body {
     height: 36px;
 }
 
-.navbar {
-    position: fixed;
-    width: 100%;
-}
+// .navbar {
+//     position: fixed;
+//     width: 100%;
+// }
 
 // Flex Grid System: from CSS Tricks @ https://css-tricks.com/dont-overthink-flexbox-grids/
 .flex-grid {
@@ -95,6 +99,10 @@ body {
 // Signup Styles
 .container--signup {
     display: flex;
+}
+
+.main--signup {
+    margin: auto;
 }
 
 .form--signup {
