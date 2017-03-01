@@ -19,7 +19,17 @@ body {
   display: flex; }
 
 .col {
-  flex: 1; }
+  flex: 1;
+  margin-right: 20px !important; }
+
+.col:last-of-type {
+  margin-right: 0 !important; }
+
+@media (max-width: 600px) {
+  .flex-grid {
+    display: block; }
+  .col {
+    width: 100% !important; } }
 
 .search-bar {
   margin: auto; }

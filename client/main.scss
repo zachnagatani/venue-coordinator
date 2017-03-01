@@ -27,6 +27,22 @@ body {
 
 .col {
     flex: 1;
+    margin-right: 20px!important;
+}
+
+.col:last-of-type {
+    margin-right: 0!important;
+}
+
+// Collapse cols
+@media (max-width: 600px) {
+  .flex-grid {
+    display: block;
+  }
+
+  .col {
+      width: 100%!important;
+  }
 }
 
 // SearchBar styles
