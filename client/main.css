@@ -1,0 +1,25 @@
+html {
+  height: 100%; }
+
+body {
+  min-height: 100%; }
+
+#root {
+  height: 100vh; }
+
+[data-reactroot] {
+  height: 100%; }
+
+.container {
+  max-width: 80%;
+  height: 100%;
+  margin: 0 auto; }
+
+.flex-grid {
+  display: flex; }
+
+.col {
+  flex: 1; }
+
+.search-bar {
+  margin: auto; }

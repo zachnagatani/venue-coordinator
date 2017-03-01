@@ -1,0 +1,35 @@
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+
+#root {
+    height: 100vh;
+}
+
+[data-reactroot] {
+    height: 100%;
+}
+
+.container {
+    max-width: 80%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+// Flex Grid System: from CSS Tricks @ https://css-tricks.com/dont-overthink-flexbox-grids/
+.flex-grid {
+    display: flex;
+}
+
+.col {
+    flex: 1;
+}
+
+// SearchBar styles
+.search-bar {
+    margin: auto;
+}
