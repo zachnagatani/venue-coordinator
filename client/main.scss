@@ -30,10 +30,10 @@ h1 {
     height: 36px;
 }
 
-// .navbar {
-//     position: fixed;
-//     width: 100%;
-// }
+.navbar {
+    position: fixed;
+    width: 100%;
+}
 
 // Flex Grid System: from CSS Tricks @ https://css-tricks.com/dont-overthink-flexbox-grids/
 .flex-grid {
@@ -96,16 +96,16 @@ h1 {
     margin-top: 0;
 }
 
-// Signup Styles
-.container--signup {
+// Signup/Login Styles
+.container--signup, .container--login {
     display: flex;
 }
 
-.main--signup {
+.main--signup, .main--login {
     margin: auto;
 }
 
-.form--signup {
+.form--signup, .form--login {
     display: flex;
     flex-direction: column;
     align-items: center;

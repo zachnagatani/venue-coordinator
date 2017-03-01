@@ -21,6 +21,10 @@ h1 {
 .btn {
   height: 36px; }
 
+.navbar {
+  position: fixed;
+  width: 100%; }
+
 .flex-grid {
   display: flex;
   align-items: flex-end; }
@@ -62,13 +66,13 @@ h1 {
 .venue ~ .venue {
   margin-top: 0; }
 
-.container--signup {
+.container--signup, .container--login {
   display: flex; }
 
-.main--signup {
+.main--signup, .main--login {
   margin: auto; }
 
-.form--signup {
+.form--signup, .form--login {
   display: flex;
   flex-direction: column;
   align-items: center;
