@@ -16788,6 +16788,8 @@ class Signup extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__reducers__ = __webpack_require__(230);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_router__ = __webpack_require__(226);
+
 
 
 
@@ -16797,6 +16799,17 @@ let store = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["a" /* cre
 console.log(store.getState());
 
 let unsubscribe = store.subscribe(() => console.log(store.getState()));
+
+// if (!store.getState().venues.length) {
+//     hashHistory.push('/');
+// }
+
+__WEBPACK_IMPORTED_MODULE_3_react_router__["b" /* hashHistory */].listen(location => {
+    console.log(location);
+    if (location.pathname === '/venues' && !store.getState().venues.length) {
+        __WEBPACK_IMPORTED_MODULE_3_react_router__["b" /* hashHistory */].push('/');
+    }
+});
 
 /* harmony default export */ __webpack_exports__["a"] = store;
 
@@ -17154,10 +17167,18 @@ LoginForm = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_TextField__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_RaisedButton__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_RaisedButton___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_RaisedButton__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_TextField__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_TextField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_TextField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_RaisedButton__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_RaisedButton___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_RaisedButton__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_auth__ = __webpack_require__(536);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__state_actions__ = __webpack_require__(86);
+
+
+
+
 
 
 
@@ -17165,6 +17186,73 @@ LoginForm = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" 
 class SignupForm extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            username: '',
+            email: '',
+            password: '',
+            verify: ''
+        };
+
+        this.handleInput = this.handleInput.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleInput(field, event) {
+        switch (field) {
+            case 'username':
+                this.setState({
+                    username: event.target.value
+                });
+                break;
+            case 'email':
+                this.setState({
+                    email: event.target.value
+                });
+                break;
+            case 'password':
+                this.setState({
+                    password: event.target.value
+                });
+                break;
+            case 'verify':
+                this.setState({
+                    verify: event.target.value
+                });
+                break;
+            default:
+                return this.state;
+        }
+    }
+
+    handleSubmit(username, email, password, verify, event) {
+        fetch('/api/signup', {
+            method: 'POST',
+            body: JSON.stringify({
+                username: username,
+                email: email,
+                password: password,
+                verify: verify
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if (!response.ok) {
+                console.log(response);
+                return;
+            }
+            return response.json();
+        }).then(token => {
+            console.log(token);
+            __WEBPACK_IMPORTED_MODULE_5__services_auth__["a" /* default */].saveToken(token);
+
+            if (__WEBPACK_IMPORTED_MODULE_5__services_auth__["a" /* default */].isLoggedIn()) {
+                this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__state_actions__["d" /* login */])(username));
+            }
+
+            __WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* hashHistory */].push('/venues');
+        });
     }
 
     render() {
@@ -17179,15 +17267,41 @@ class SignupForm extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'form',
                 { className: 'form--signup' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { hintText: 'Enter a username', floatingLabelText: 'Username', multiLine: true, id: 'username', name: 'username' }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { hintText: 'Enter an email', floatingLabelText: 'Email', multiLine: true, id: 'email', name: 'email', type: 'email' }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { hintText: 'Enter a password', floatingLabelText: 'Password', multiLine: true, id: 'password', name: 'password', type: 'password' }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { hintText: 'Reenter your password', floatingLabelText: 'Reenter Password', multiLine: true, id: 'verify', name: 'verify', type: 'password' }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_RaisedButton___default.a, { label: 'Sign Up' })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_TextField___default.a, { hintText: 'Enter a username',
+                    floatingLabelText: 'Username',
+                    value: this.state.username,
+                    id: 'username',
+                    name: 'username',
+                    onChange: event => this.handleInput('username', event) }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_TextField___default.a, { hintText: 'Enter an email',
+                    floatingLabelText: 'Email',
+                    value: this.state.email,
+                    id: 'email',
+                    name: 'email',
+                    type: 'email',
+                    onChange: event => this.handleInput('email', event) }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_TextField___default.a, { hintText: 'Enter a password',
+                    floatingLabelText: 'Password',
+                    value: this.state.password,
+                    id: 'password',
+                    name: 'password',
+                    type: 'password',
+                    onChange: event => this.handleInput('password', event) }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_TextField___default.a, { hintText: 'Reenter your password',
+                    floatingLabelText: 'Reenter Password',
+                    value: this.state.verify,
+                    id: 'verify',
+                    name: 'verify',
+                    type: 'password',
+                    onChange: event => this.handleInput('verify', event) }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_RaisedButton___default.a, { label: 'Sign Up',
+                    onClick: () => this.handleSubmit(this.state.username, this.state.email, this.state.password, this.state.verify) })
             )
         );
     }
 };
+
+SignupForm = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])()(SignupForm);
 
 /* harmony default export */ __webpack_exports__["a"] = SignupForm;
 
