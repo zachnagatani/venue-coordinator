@@ -22,7 +22,13 @@ const App = () => {
                 <NavBar />
                 <Router history={hashHistory}>
                     <Route path="/" component={Home} />
-                    <Route path="/venues" component={VenuesContainer} />
+                    <Route path="/venues"
+                        component={VenuesContainer}
+                        onEnter={() => {
+                            if (!store.getState().venues.length) {
+                                hashHistory.push('/');
+                            }
+                        }} />
                     <Route path="/signup" component={Signup}/>
                     <Route path="/login" component={Login}/>
                 </Router>

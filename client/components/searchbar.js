@@ -69,10 +69,11 @@ class SearchBar extends React.Component {
                         venue.count = json.count;
                         venue.users = json.users;
                         this.props.dispatch(storeVenue(venue));
+                    }).then(() => {
+                        hashHistory.push('/venues');
                     });
                 });
 
-                hashHistory.push('/venues');
             });
     }
 

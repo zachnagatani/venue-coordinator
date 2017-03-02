@@ -5,25 +5,13 @@ import {
     CLEAR_VENUES, clearVenues,
     LOGIN, login
 } from './actions';
-import {hashHistory} from 'react-router';
 
 let store = createStore(venueCoordinator);
 
-console.log(store.getState());
+// console.log(store.getState());
 
-let unsubscribe = store.subscribe(() =>
-  console.log(store.getState())
-);
-
-// if (!store.getState().venues.length) {
-//     hashHistory.push('/');
-// }
-
-hashHistory.listen(location => {
-    console.log(location);
-    if (location.pathname === '/venues' && !store.getState().venues.length) {
-        hashHistory.push('/');
-    }
-});
+// let unsubscribe = store.subscribe(() =>
+//   console.log(store.getState())
+// );
 
 export default store;

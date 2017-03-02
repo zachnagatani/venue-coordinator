@@ -7254,12 +7254,12 @@ const SearchButton = props => {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return STORE_VENUE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return STORE_VENUE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return storeVenue; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return CLEAR_VENUES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return CLEAR_VENUES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return clearVenues; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return LOGIN; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return login; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return LOGIN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return login; });
 const STORE_VENUE = 'STORE_VENUE';
 function storeVenue(venue) {
     return {
@@ -10859,9 +10859,9 @@ module.exports = getIteratorFn;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__ = __webpack_require__(526);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compose__ = __webpack_require__(215);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warning__ = __webpack_require__(217);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__createStore__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__combineReducers__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_0__createStore__["b"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_1__combineReducers__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__["a"]; });
 /* unused harmony reexport applyMiddleware */
 /* unused harmony reexport compose */
 
@@ -10980,10 +10980,10 @@ class SearchBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
                     venue.count = json.count;
                     venue.users = json.users;
                     this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__state_actions__["f" /* storeVenue */])(venue));
+                }).then(() => {
+                    __WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* hashHistory */].push('/venues');
                 });
             });
-
-            __WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* hashHistory */].push('/venues');
         });
     }
 
@@ -16337,8 +16337,8 @@ function compose() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(530);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_symbol_observable__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ActionTypes; });
-/* harmony export (immutable) */ __webpack_exports__["a"] = createStore;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActionTypes; });
+/* harmony export (immutable) */ __webpack_exports__["b"] = createStore;
 
 
 
@@ -16788,28 +16788,17 @@ class Signup extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__reducers__ = __webpack_require__(230);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_router__ = __webpack_require__(226);
 
 
 
 
+let store = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["b" /* createStore */])(__WEBPACK_IMPORTED_MODULE_1__reducers__["a" /* default */]);
 
-let store = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["a" /* createStore */])(__WEBPACK_IMPORTED_MODULE_1__reducers__["a" /* default */]);
+// console.log(store.getState());
 
-console.log(store.getState());
-
-let unsubscribe = store.subscribe(() => console.log(store.getState()));
-
-// if (!store.getState().venues.length) {
-//     hashHistory.push('/');
-// }
-
-__WEBPACK_IMPORTED_MODULE_3_react_router__["b" /* hashHistory */].listen(location => {
-    console.log(location);
-    if (location.pathname === '/venues' && !store.getState().venues.length) {
-        __WEBPACK_IMPORTED_MODULE_3_react_router__["b" /* hashHistory */].push('/');
-    }
-});
+// let unsubscribe = store.subscribe(() =>
+//   console.log(store.getState())
+// );
 
 /* harmony default export */ __webpack_exports__["a"] = store;
 
@@ -17117,7 +17106,7 @@ class LoginForm extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
             __WEBPACK_IMPORTED_MODULE_5__services_auth__["a" /* default */].saveToken(token);
 
             if (__WEBPACK_IMPORTED_MODULE_5__services_auth__["a" /* default */].isLoggedIn()) {
-                this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__state_actions__["d" /* login */])(username));
+                this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__state_actions__["a" /* login */])(username));
             }
             __WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* hashHistory */].push('/venues');
         });
@@ -17248,7 +17237,7 @@ class SignupForm extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
             __WEBPACK_IMPORTED_MODULE_5__services_auth__["a" /* default */].saveToken(token);
 
             if (__WEBPACK_IMPORTED_MODULE_5__services_auth__["a" /* default */].isLoggedIn()) {
-                this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__state_actions__["d" /* login */])(username));
+                this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__state_actions__["a" /* login */])(username));
             }
 
             __WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* hashHistory */].push('/venues');
@@ -17317,9 +17306,9 @@ SignupForm = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b"
 
 function venuesReducer(state = [], action) {
     switch (action.type) {
-        case __WEBPACK_IMPORTED_MODULE_1__actions__["a" /* STORE_VENUE */]:
+        case __WEBPACK_IMPORTED_MODULE_1__actions__["b" /* STORE_VENUE */]:
             return [...state, action.payload.venue];
-        case __WEBPACK_IMPORTED_MODULE_1__actions__["b" /* CLEAR_VENUES */]:
+        case __WEBPACK_IMPORTED_MODULE_1__actions__["c" /* CLEAR_VENUES */]:
             return [];
         default:
             return state;
@@ -17328,7 +17317,7 @@ function venuesReducer(state = [], action) {
 
 function userReducer(state = { loggedIn: false, username: null }, action) {
     switch (action.type) {
-        case __WEBPACK_IMPORTED_MODULE_1__actions__["c" /* LOGIN */]:
+        case __WEBPACK_IMPORTED_MODULE_1__actions__["d" /* LOGIN */]:
             return {
                 loggedIn: true,
                 username: action.payload.username
@@ -17338,7 +17327,7 @@ function userReducer(state = { loggedIn: false, username: null }, action) {
     }
 }
 
-const venueCoordinator = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["b" /* combineReducers */])({
+const venueCoordinator = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["c" /* combineReducers */])({
     venues: venuesReducer,
     user: userReducer
 });
@@ -45286,7 +45275,7 @@ function whenMapDispatchToPropsIsMissing(mapDispatchToProps) {
 
 function whenMapDispatchToPropsIsObject(mapDispatchToProps) {
   return mapDispatchToProps && typeof mapDispatchToProps === 'object' ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__wrapMapToProps__["b" /* wrapMapToPropsConstant */])(function (dispatch) {
-    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["c" /* bindActionCreators */])(mapDispatchToProps, dispatch);
+    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["a" /* bindActionCreators */])(mapDispatchToProps, dispatch);
   }) : undefined;
 }
 
@@ -49741,7 +49730,7 @@ function getUndefinedStateErrorMessage(key, action) {
 
 function getUnexpectedStateShapeWarningMessage(inputState, reducers, action, unexpectedKeyCache) {
   var reducerKeys = Object.keys(reducers);
-  var argumentName = action && action.type === __WEBPACK_IMPORTED_MODULE_0__createStore__["b" /* ActionTypes */].INIT ? 'preloadedState argument passed to createStore' : 'previous state received by the reducer';
+  var argumentName = action && action.type === __WEBPACK_IMPORTED_MODULE_0__createStore__["a" /* ActionTypes */].INIT ? 'preloadedState argument passed to createStore' : 'previous state received by the reducer';
 
   if (reducerKeys.length === 0) {
     return 'Store does not have a valid reducer. Make sure the argument passed ' + 'to combineReducers is an object whose values are reducers.';
@@ -49767,7 +49756,7 @@ function getUnexpectedStateShapeWarningMessage(inputState, reducers, action, une
 function assertReducerSanity(reducers) {
   Object.keys(reducers).forEach(function (key) {
     var reducer = reducers[key];
-    var initialState = reducer(undefined, { type: __WEBPACK_IMPORTED_MODULE_0__createStore__["b" /* ActionTypes */].INIT });
+    var initialState = reducer(undefined, { type: __WEBPACK_IMPORTED_MODULE_0__createStore__["a" /* ActionTypes */].INIT });
 
     if (typeof initialState === 'undefined') {
       throw new Error('Reducer "' + key + '" returned undefined during initialization. ' + 'If the state passed to the reducer is undefined, you must ' + 'explicitly return the initial state. The initial state may ' + 'not be undefined.');
@@ -49775,7 +49764,7 @@ function assertReducerSanity(reducers) {
 
     var type = '@@redux/PROBE_UNKNOWN_ACTION_' + Math.random().toString(36).substring(7).split('').join('.');
     if (typeof reducer(undefined, { type: type }) === 'undefined') {
-      throw new Error('Reducer "' + key + '" returned undefined when probed with a random type. ' + ('Don\'t try to handle ' + __WEBPACK_IMPORTED_MODULE_0__createStore__["b" /* ActionTypes */].INIT + ' or other actions in "redux/*" ') + 'namespace. They are considered private. Instead, you must return the ' + 'current state for any unknown actions, unless it is undefined, ' + 'in which case you must return the initial state, regardless of the ' + 'action type. The initial state may not be undefined.');
+      throw new Error('Reducer "' + key + '" returned undefined when probed with a random type. ' + ('Don\'t try to handle ' + __WEBPACK_IMPORTED_MODULE_0__createStore__["a" /* ActionTypes */].INIT + ' or other actions in "redux/*" ') + 'namespace. They are considered private. Instead, you must return the ' + 'current state for any unknown actions, unless it is undefined, ' + 'in which case you must return the initial state, regardless of the ' + 'action type. The initial state may not be undefined.');
     }
   });
 }
@@ -50004,7 +49993,13 @@ const App = () => {
                 __WEBPACK_IMPORTED_MODULE_2_react_router__["a" /* Router */],
                 { history: __WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* hashHistory */] },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["c" /* Route */], { path: '/', component: __WEBPACK_IMPORTED_MODULE_8__components_home__["a" /* default */] }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["c" /* Route */], { path: '/venues', component: __WEBPACK_IMPORTED_MODULE_9__components_venuesContainer__["a" /* default */] }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["c" /* Route */], { path: '/venues',
+                    component: __WEBPACK_IMPORTED_MODULE_9__components_venuesContainer__["a" /* default */],
+                    onEnter: () => {
+                        if (!__WEBPACK_IMPORTED_MODULE_3__components_state_store__["a" /* default */].getState().venues.length) {
+                            __WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* hashHistory */].push('/');
+                        }
+                    } }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["c" /* Route */], { path: '/signup', component: __WEBPACK_IMPORTED_MODULE_10__components_signup__["a" /* default */] }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["c" /* Route */], { path: '/login', component: __WEBPACK_IMPORTED_MODULE_11__components_login__["a" /* default */] })
             )
