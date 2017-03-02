@@ -50,7 +50,6 @@ class SearchBar extends React.Component {
                 // Stores each venue in state/store, and adds each venue
                 // to db if not there already
                 venues.forEach(venue => {
-                    this.props.dispatch(storeVenue(venue));
                     fetch('/api/venue/add', {
                         'method': 'POST',
                         body: JSON.stringify({
@@ -60,12 +59,11 @@ class SearchBar extends React.Component {
                             'Content-Type': 'application/json'
                         }
                     }).then(response => {
-                        if (!response.ok) {
-                            console.log('yall suck');
-                            return;
-                        }
-
                         return response.json();
+                    }).then(json => {
+                        venue.count = json.count;
+                        venue.users = json.users;
+                        this.props.dispatch(storeVenue(venue));
                     });
                 });
 

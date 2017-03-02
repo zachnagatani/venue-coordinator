@@ -7,7 +7,7 @@ const Venue = props => {
         <Card className="venue">
             <CardTitle title={props.title} subtitle={props.subtitle} />
             <CardActions className="clearfix">
-                <Chip className="going-chip">0 Going</Chip>
+                <Chip className="going-chip">{props.count} Going</Chip>
             </CardActions>
         </Card>
     );

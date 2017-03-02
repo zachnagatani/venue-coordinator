@@ -30,9 +30,12 @@ module.exports = (app) => {
         Venue.findById({
             _id: req.body.venueId
         }, (err, venue) => {
+            if (err) {
+                return console.log(err);
+            }
             if (venue) {
-                res.status(403);
-                res.send('venue already exists');
+                res.status(409);
+                res.json(venue);
                 return;
             }
 

@@ -10943,7 +10943,6 @@ class SearchBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
             // Stores each venue in state/store, and adds each venue
             // to db if not there already
             venues.forEach(venue => {
-                this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__state_actions__["b" /* storeVenue */])(venue));
                 fetch('/api/venue/add', {
                     'method': 'POST',
                     body: JSON.stringify({
@@ -10953,12 +10952,11 @@ class SearchBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
                         'Content-Type': 'application/json'
                     }
                 }).then(response => {
-                    if (!response.ok) {
-                        console.log('yall suck');
-                        return;
-                    }
-
                     return response.json();
+                }).then(json => {
+                    venue.count = json.count;
+                    venue.users = json.users;
+                    this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__state_actions__["b" /* storeVenue */])(venue));
                 });
             });
 
@@ -16797,34 +16795,12 @@ let store = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["a" /* cre
 
 
 const Venues = props => {
-    console.log(props);
     const VenueItems = props.venues.map(venue => {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__venue__["a" /* default */], { key: venue.id, title: venue.name,
             subtitle: venue.location.address,
-            text: 'Pooppoo yummm' });
+            count: venue.count });
     });
-
-    console.log(VenueItems);
-    // return (
-    //     <div className="container">
-    //         <div className="flex-grid">
-    //             <SearchBar />
-    //         </div>
-    //         <Venue title="My Title" subtitle="My subtitle"
-    //             text="Bacon ipsum dolor amet tongue venison doner, brisket meatloaf kevin turkey flank boudin."
-    //             imgSrc="https://s-media-cache-ak0.pinimg.com/originals/84/cc/ca/84cccafae9fead96b47b73f0f946a502.jpg"
-    //          />
-    //         <Venue title="My Title" subtitle="My subtitle"
-    //             text="Bacon ipsum dolor amet tongue venison doner, brisket meatloaf kevin turkey flank boudin."
-    //             imgSrc="https://s-media-cache-ak0.pinimg.com/originals/84/cc/ca/84cccafae9fead96b47b73f0f946a502.jpg"
-    //          />
-    //         <Venue title="My Title" subtitle="My subtitle"
-    //             text="Bacon ipsum dolor amet tongue venison doner, brisket meatloaf kevin turkey flank boudin."
-    //             imgSrc="https://s-media-cache-ak0.pinimg.com/originals/84/cc/ca/84cccafae9fead96b47b73f0f946a502.jpg"
-    //          />
-    //     </div>
-    // );
-
+    console.log(props.venues);
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'container' },
@@ -17170,7 +17146,8 @@ const Venue = props => {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_2_material_ui_Chip___default.a,
                 { className: 'going-chip' },
-                '0 Going'
+                props.count,
+                ' Going'
             )
         )
     );
