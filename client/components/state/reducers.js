@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 import {
     STORE_VENUE, storeVenue,
-    CLEAR_VENUES, clearVenues
+    CLEAR_VENUES, clearVenues,
+    LOGIN, login
 } from './actions';
 
 function venuesReducer(state = [], action) {
@@ -18,8 +19,21 @@ function venuesReducer(state = [], action) {
     }
 }
 
+function userReducer(state = {loggedIn: false, username: null}, action) {
+    switch(action.type) {
+        case LOGIN:
+            return {
+                loggedIn: true,
+                username: action.payload.username
+            };
+        default:
+            return state;
+    }
+}
+
 const venueCoordinator = combineReducers({
-    venues: venuesReducer
+    venues: venuesReducer,
+    user: userReducer
 });
 
 export default venueCoordinator;

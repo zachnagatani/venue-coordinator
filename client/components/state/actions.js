@@ -15,7 +15,18 @@ function clearVenues() {
     };
 }
 
+const LOGIN = 'LOGIN';
+function login(username) {
+    return {
+        type: LOGIN,
+        payload: {
+            username: username
+        }
+    };
+}
+
 export {
     STORE_VENUE, storeVenue,
-    CLEAR_VENUES, clearVenues
+    CLEAR_VENUES, clearVenues,
+    LOGIN, login
 };

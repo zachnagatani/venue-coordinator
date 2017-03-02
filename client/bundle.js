@@ -7255,9 +7255,11 @@ const SearchButton = props => {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return STORE_VENUE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return storeVenue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return storeVenue; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return CLEAR_VENUES; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return clearVenues; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return clearVenues; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return LOGIN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return login; });
 const STORE_VENUE = 'STORE_VENUE';
 function storeVenue(venue) {
     return {
@@ -7272,6 +7274,16 @@ const CLEAR_VENUES = 'CLEAR_VENUES';
 function clearVenues() {
     return {
         type: CLEAR_VENUES
+    };
+}
+
+const LOGIN = 'LOGIN';
+function login(username) {
+    return {
+        type: LOGIN,
+        payload: {
+            username: username
+        }
     };
 }
 
@@ -10934,7 +10946,7 @@ class SearchBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
             return alert('Please enter city');
         }
 
-        this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__state_actions__["c" /* clearVenues */])());
+        this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__state_actions__["e" /* clearVenues */])());
 
         let venues;
         console.log('searching for ' + inputValue);
@@ -10967,7 +10979,7 @@ class SearchBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
                 }).then(json => {
                     venue.count = json.count;
                     venue.users = json.users;
-                    this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__state_actions__["d" /* storeVenue */])(venue));
+                    this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__state_actions__["f" /* storeVenue */])(venue));
                 });
             });
 
@@ -16782,11 +16794,9 @@ class Signup extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
 let store = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["a" /* createStore */])(__WEBPACK_IMPORTED_MODULE_1__reducers__["a" /* default */]);
 
-// console.log(store.getState());
+console.log(store.getState());
 
-// let unsubscribe = store.subscribe(() =>
-//   console.log(store.getState())
-// );
+let unsubscribe = store.subscribe(() => console.log(store.getState()));
 
 /* harmony default export */ __webpack_exports__["a"] = store;
 
@@ -17027,10 +17037,18 @@ should be injected by the application.'
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_TextField__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_RaisedButton__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_RaisedButton___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_RaisedButton__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_TextField__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_TextField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_TextField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_RaisedButton__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_RaisedButton___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_RaisedButton__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_auth__ = __webpack_require__(536);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__state_actions__ = __webpack_require__(86);
+
+
+
+
 
 
 
@@ -17038,6 +17056,58 @@ should be injected by the application.'
 class LoginForm extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            username: '',
+            password: ''
+        };
+
+        this.handleInput = this.handleInput.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleInput(field, event) {
+        switch (field) {
+            case 'username':
+                this.setState({
+                    username: event.target.value
+                });
+                break;
+            case 'password':
+                this.setState({
+                    password: event.target.value
+                });
+                break;
+            default:
+                return this.state;
+        }
+    }
+
+    handleSubmit(username, password) {
+        fetch('/api/login', {
+            method: 'POST',
+            body: JSON.stringify({
+                username: username,
+                password: password
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if (!response.ok) {
+                console.log(response);
+                return;
+            }
+            return response.json();
+        }).then(token => {
+            console.log(token);
+            __WEBPACK_IMPORTED_MODULE_5__services_auth__["a" /* default */].saveToken(token);
+
+            if (__WEBPACK_IMPORTED_MODULE_5__services_auth__["a" /* default */].isLoggedIn()) {
+                this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__state_actions__["d" /* login */])(username));
+            }
+            __WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* hashHistory */].push('/venues');
+        });
     }
 
     render() {
@@ -17051,14 +17121,29 @@ class LoginForm extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'form',
-                { className: 'form--login' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { hintText: 'Enter a username', floatingLabelText: 'Username', multiLine: true, id: 'username', name: 'username' }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { hintText: 'Enter a password', floatingLabelText: 'Password', multiLine: true, id: 'password', name: 'password', type: 'password' }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_RaisedButton___default.a, { label: 'Sign Up' })
+                { method: 'POST', action: '', className: 'form--login', onSubmit: event => {
+                        event.preventDefault();this.handleSubmit(this.state.username, this.state.password);
+                    } },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_TextField___default.a, { hintText: 'Enter a username',
+                    floatingLabelText: 'Username',
+                    id: 'username',
+                    name: 'username',
+                    value: this.state.username,
+                    onChange: event => this.handleInput('username', event) }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_TextField___default.a, { hintText: 'Enter a password',
+                    floatingLabelText: 'Password',
+                    id: 'password',
+                    name: 'password',
+                    type: 'password',
+                    value: this.state.password,
+                    onChange: event => this.handleInput('password', event) }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_RaisedButton___default.a, { primary: true, label: 'Login', onClick: () => this.handleSubmit(this.state.username, this.state.password) })
             )
         );
     }
 };
+
+LoginForm = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])()(LoginForm);
 
 /* harmony default export */ __webpack_exports__["a"] = LoginForm;
 
@@ -17127,8 +17212,21 @@ function venuesReducer(state = [], action) {
     }
 }
 
+function userReducer(state = { loggedIn: false, username: null }, action) {
+    switch (action.type) {
+        case __WEBPACK_IMPORTED_MODULE_1__actions__["c" /* LOGIN */]:
+            return {
+                loggedIn: true,
+                username: action.payload.username
+            };
+        default:
+            return state;
+    }
+}
+
 const venueCoordinator = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["b" /* combineReducers */])({
-    venues: venuesReducer
+    venues: venuesReducer,
+    user: userReducer
 });
 
 /* harmony default export */ __webpack_exports__["a"] = venueCoordinator;
@@ -49825,6 +49923,54 @@ const mapStateToProps = state => {
 const VenuesContainer = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_react_redux__["b" /* connect */])(mapStateToProps)(__WEBPACK_IMPORTED_MODULE_1__venues__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["a"] = VenuesContainer;
+
+/***/ }),
+/* 536 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const auth = {
+    saveToken: token => {
+        window.localStorage['jwt'] = token;
+    },
+
+    getToken: () => {
+        return window.localStorage['jwt'];
+    },
+
+    logout: () => {
+        window.localStorage.removeItem('jwt');
+    },
+
+    isLoggedIn: function () {
+        const token = this.getToken();
+        let payload;
+
+        if (token) {
+            payload = token.split('.')[1];
+            payload = window.atob(payload);
+            payload = JSON.parse(payload);
+            return payload.exp > Date.now() / 1000;
+        } else {
+            return false;
+        }
+    },
+
+    currentUser: function () {
+        if (this.isLoggedIn()) {
+            const token = this.getToken();
+            let payload = token.split('.')[1];
+            payload = window.atob(payload);
+            payload = JSON.parse(payload);
+
+            return {
+                username: payload.username
+            };
+        }
+    }
+};
+
+/* harmony default export */ __webpack_exports__["a"] = auth;
 
 /***/ })
 /******/ ]);
