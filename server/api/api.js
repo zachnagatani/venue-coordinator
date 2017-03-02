@@ -117,7 +117,7 @@ module.exports = (app) => {
         // API call to Foursquare. Returns it to front-end as response
         request('https://api.foursquare.com/v2/venues/search?client_id=' +
             FOURSQUARE_CLIENT_ID + '&client_secret=' + FOURSQUARE_CLIENT_SECRET +
-            '&query=donuts&near=' + req.params.city + '&v=20170501&',
+            '&query=coffee&near=' + req.params.city + '&v=20170501&',
             (err, response, body) => {
                 if (err) {
                     console.log(err);

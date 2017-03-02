@@ -5,10 +5,7 @@ import Chip from 'material-ui/Chip';
 const Venue = props => {
     return (
         <Card className="venue">
-            <CardMedia overlay={<CardTitle title={props.title} subtitle={props.subtitle} />}>
-                <img src={props.imgSrc} />
-            </CardMedia>
-            <CardText>{props.text}</CardText>
+            <CardTitle title={props.title} subtitle={props.subtitle} />
             <CardActions className="clearfix">
                 <Chip className="going-chip">0 Going</Chip>
             </CardActions>

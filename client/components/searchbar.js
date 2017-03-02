@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {hashHistory} from 'react-router';
 import {STORE_VENUE, storeVenue} from './state/actions';
 import TextField from 'material-ui/TextField';
 import SearchButton from './searchButton';
@@ -67,6 +68,8 @@ class SearchBar extends React.Component {
                         return response.json();
                     });
                 });
+
+                hashHistory.push('/venues');
             });
     }
 

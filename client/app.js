@@ -7,7 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import NavBar from './components/navbar';
 import Home from './components/home';
-import Venues from './components/venues';
+import VenuesContainer from './components/venuesContainer';
 import Signup from './components/signup';
 import Login from './components/login';
 
@@ -22,7 +22,7 @@ const App = () => {
                 <NavBar />
                 <Router history={hashHistory}>
                     <Route path="/" component={Home} />
-                    <Route path="/venues" component={Venues} />
+                    <Route path="/venues" component={VenuesContainer} />
                     <Route path="/signup" component={Signup}/>
                     <Route path="/login" component={Login}/>
                 </Router>

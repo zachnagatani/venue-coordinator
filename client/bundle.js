@@ -10888,10 +10888,12 @@ if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__state_actions__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_TextField__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_TextField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_TextField__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__searchButton__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__state_actions__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_TextField__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_TextField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_TextField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__searchButton__ = __webpack_require__(85);
+
 
 
 
@@ -10941,7 +10943,7 @@ class SearchBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
             // Stores each venue in state/store, and adds each venue
             // to db if not there already
             venues.forEach(venue => {
-                this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__state_actions__["b" /* storeVenue */])(venue));
+                this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__state_actions__["b" /* storeVenue */])(venue));
                 fetch('/api/venue/add', {
                     'method': 'POST',
                     body: JSON.stringify({
@@ -10959,6 +10961,8 @@ class SearchBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
                     return response.json();
                 });
             });
+
+            __WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* hashHistory */].push('/venues');
         });
     }
 
@@ -10968,14 +10972,14 @@ class SearchBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
             { method: 'POST', action: '', onSubmit: event => {
                     event.preventDefault();this.handleSearch(this.state.inputValue);
                 } },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_TextField___default.a, { hintText: 'Enter your city',
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_TextField___default.a, { hintText: 'Enter your city',
                 floatingLabelText: 'Search for Venues',
                 className: 'search-bar',
                 id: 'search',
                 name: 'search',
                 value: this.state.inputValue,
                 onChange: this.handleInput }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__searchButton__["a" /* default */], { handleSearch: this.handleSearch, inputValue: this.state.inputValue })
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__searchButton__["a" /* default */], { handleSearch: this.handleSearch, inputValue: this.state.inputValue })
         );
     }
 };
@@ -16769,9 +16773,11 @@ class Signup extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
 let store = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["a" /* createStore */])(__WEBPACK_IMPORTED_MODULE_1__reducers__["a" /* default */]);
 
-console.log(store.getState());
+// console.log(store.getState());
 
-let unsubscribe = store.subscribe(() => console.log(store.getState()));
+// let unsubscribe = store.subscribe(() =>
+//   console.log(store.getState())
+// );
 
 /* harmony default export */ __webpack_exports__["a"] = store;
 
@@ -16791,27 +16797,43 @@ let unsubscribe = store.subscribe(() => console.log(store.getState()));
 
 
 const Venues = props => {
+    console.log(props);
+    const VenueItems = props.venues.map(venue => {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__venue__["a" /* default */], { key: venue.id, title: venue.name,
+            subtitle: venue.location.address,
+            text: 'Pooppoo yummm' });
+    });
+
+    console.log(VenueItems);
+    // return (
+    //     <div className="container">
+    //         <div className="flex-grid">
+    //             <SearchBar />
+    //         </div>
+    //         <Venue title="My Title" subtitle="My subtitle"
+    //             text="Bacon ipsum dolor amet tongue venison doner, brisket meatloaf kevin turkey flank boudin."
+    //             imgSrc="https://s-media-cache-ak0.pinimg.com/originals/84/cc/ca/84cccafae9fead96b47b73f0f946a502.jpg"
+    //          />
+    //         <Venue title="My Title" subtitle="My subtitle"
+    //             text="Bacon ipsum dolor amet tongue venison doner, brisket meatloaf kevin turkey flank boudin."
+    //             imgSrc="https://s-media-cache-ak0.pinimg.com/originals/84/cc/ca/84cccafae9fead96b47b73f0f946a502.jpg"
+    //          />
+    //         <Venue title="My Title" subtitle="My subtitle"
+    //             text="Bacon ipsum dolor amet tongue venison doner, brisket meatloaf kevin turkey flank boudin."
+    //             imgSrc="https://s-media-cache-ak0.pinimg.com/originals/84/cc/ca/84cccafae9fead96b47b73f0f946a502.jpg"
+    //          />
+    //     </div>
+    // );
+
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'container' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'flex-grid' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__searchbar__["a" /* default */], null),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__searchButton__["a" /* default */], null)
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__searchbar__["a" /* default */], null)
         ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__venue__["a" /* default */], { title: 'My Title', subtitle: 'My subtitle',
-            text: 'Bacon ipsum dolor amet tongue venison doner, brisket meatloaf kevin turkey flank boudin.',
-            imgSrc: 'https://s-media-cache-ak0.pinimg.com/originals/84/cc/ca/84cccafae9fead96b47b73f0f946a502.jpg'
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__venue__["a" /* default */], { title: 'My Title', subtitle: 'My subtitle',
-            text: 'Bacon ipsum dolor amet tongue venison doner, brisket meatloaf kevin turkey flank boudin.',
-            imgSrc: 'https://s-media-cache-ak0.pinimg.com/originals/84/cc/ca/84cccafae9fead96b47b73f0f946a502.jpg'
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__venue__["a" /* default */], { title: 'My Title', subtitle: 'My subtitle',
-            text: 'Bacon ipsum dolor amet tongue venison doner, brisket meatloaf kevin turkey flank boudin.',
-            imgSrc: 'https://s-media-cache-ak0.pinimg.com/originals/84/cc/ca/84cccafae9fead96b47b73f0f946a502.jpg'
-        })
+        VenueItems
     );
 };
 
@@ -17141,16 +17163,7 @@ const Venue = props => {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_1_material_ui_Card__["Card"],
         { className: 'venue' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_1_material_ui_Card__["CardMedia"],
-            { overlay: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Card__["CardTitle"], { title: props.title, subtitle: props.subtitle }) },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: props.imgSrc })
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_1_material_ui_Card__["CardText"],
-            null,
-            props.text
-        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Card__["CardTitle"], { title: props.title, subtitle: props.subtitle }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_1_material_ui_Card__["CardActions"],
             { className: 'clearfix' },
@@ -49757,7 +49770,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_tap_event_plugin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react_tap_event_plugin__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_navbar__ = __webpack_require__(221);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_home__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_venues__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_venuesContainer__ = __webpack_require__(535);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_signup__ = __webpack_require__(222);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_login__ = __webpack_require__(220);
 
@@ -49789,7 +49802,7 @@ const App = () => {
                 __WEBPACK_IMPORTED_MODULE_2_react_router__["a" /* Router */],
                 { history: __WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* hashHistory */] },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["c" /* Route */], { path: '/', component: __WEBPACK_IMPORTED_MODULE_8__components_home__["a" /* default */] }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["c" /* Route */], { path: '/venues', component: __WEBPACK_IMPORTED_MODULE_9__components_venues__["a" /* default */] }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["c" /* Route */], { path: '/venues', component: __WEBPACK_IMPORTED_MODULE_9__components_venuesContainer__["a" /* default */] }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["c" /* Route */], { path: '/signup', component: __WEBPACK_IMPORTED_MODULE_10__components_signup__["a" /* default */] }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["c" /* Route */], { path: '/login', component: __WEBPACK_IMPORTED_MODULE_11__components_login__["a" /* default */] })
             )
@@ -49802,6 +49815,26 @@ __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODU
     { store: __WEBPACK_IMPORTED_MODULE_3__components_state_store__["a" /* default */] },
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(App, null)
 ), document.getElementById('root'));
+
+/***/ }),
+/* 535 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_redux__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__venues__ = __webpack_require__(224);
+
+
+
+const mapStateToProps = state => {
+    return {
+        venues: state.venues
+    };
+};
+
+const VenuesContainer = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_react_redux__["b" /* connect */])(mapStateToProps)(__WEBPACK_IMPORTED_MODULE_1__venues__["a" /* default */]);
+
+/* harmony default export */ __webpack_exports__["a"] = VenuesContainer;
 
 /***/ })
 /******/ ]);
