@@ -49,6 +49,22 @@ class SearchBar extends React.Component {
                 venues = json;
                 venues.forEach(venue => {
                     this.props.dispatch(storeVenue(venue));
+                    fetch('/api/venue/add', {
+                        'method': 'POST',
+                        body: JSON.stringify({
+                            'venueId': venue.id
+                        }),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(response => {
+                        if (!response.ok) {
+                            console.log('yall suck');
+                            return;
+                        }
+
+                        return response.json();
+                    });
                 });
             });
     }

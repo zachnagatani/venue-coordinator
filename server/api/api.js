@@ -26,10 +26,12 @@ module.exports = (app) => {
     // Checks for a Venue in the db by ID; if none exists, adds it to db
     // Only venue ID's, count, and users who are going are tracked per Foursquare terms
     app.post('/api/venue/add', (req, res) => {
+        console.log(req.body.venueId);
         Venue.findById({
             _id: req.body.venueId
         }, (err, venue) => {
             if (venue) {
+                res.status(403);
                 res.send('venue already exists');
                 return;
             }

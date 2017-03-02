@@ -10941,6 +10941,22 @@ class SearchBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
             venues = json;
             venues.forEach(venue => {
                 this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__state_actions__["b" /* storeVenue */])(venue));
+                fetch('/api/venue/add', {
+                    'method': 'POST',
+                    body: JSON.stringify({
+                        'venueId': venue.id
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(response => {
+                    if (!response.ok) {
+                        console.log('yall suck');
+                        return;
+                    }
+
+                    return response.json();
+                });
             });
         });
     }
