@@ -22,8 +22,7 @@ class SearchBar extends React.Component {
         });
     }
 
-    handleSearch(inputValue, event) {
-        event.preventDefault();
+    handleSearch(inputValue) {
         const self = this;
 
         if (!inputValue) {
@@ -47,6 +46,8 @@ class SearchBar extends React.Component {
             .then(json => {
                 // TODO: Make api calls to store ID's in DB
                 venues = json;
+                // Stores each venue in state/store, and adds each venue
+                // to db if not there already
                 venues.forEach(venue => {
                     this.props.dispatch(storeVenue(venue));
                     fetch('/api/venue/add', {
@@ -71,7 +72,7 @@ class SearchBar extends React.Component {
 
     render() {
         return (
-            <form>
+            <form method="POST" action="" onSubmit={(event) => {event.preventDefault(); this.handleSearch(this.state.inputValue);}}>
                 <TextField hintText="Enter your city"
                     floatingLabelText="Search for Venues"
                     className="search-bar"

@@ -10916,8 +10916,7 @@ class SearchBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
         });
     }
 
-    handleSearch(inputValue, event) {
-        event.preventDefault();
+    handleSearch(inputValue) {
         const self = this;
 
         if (!inputValue) {
@@ -10939,6 +10938,8 @@ class SearchBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
         }).then(json => {
             // TODO: Make api calls to store ID's in DB
             venues = json;
+            // Stores each venue in state/store, and adds each venue
+            // to db if not there already
             venues.forEach(venue => {
                 this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__state_actions__["b" /* storeVenue */])(venue));
                 fetch('/api/venue/add', {
@@ -10964,7 +10965,9 @@ class SearchBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
     render() {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'form',
-            null,
+            { method: 'POST', action: '', onSubmit: event => {
+                    event.preventDefault();this.handleSearch(this.state.inputValue);
+                } },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_TextField___default.a, { hintText: 'Enter your city',
                 floatingLabelText: 'Search for Venues',
                 className: 'search-bar',
