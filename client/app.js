@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link, hashHistory } from 'react-router';
+import store from './components/state/store';
+import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import NavBar from './components/navbar';
@@ -30,6 +32,8 @@ const App = () => {
 };
 
 ReactDOM.render(
-    <App />,
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.getElementById('root')
 );
