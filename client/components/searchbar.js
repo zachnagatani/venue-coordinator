@@ -22,14 +22,27 @@ class SearchBar extends React.Component {
     handleSearch(inputValue, event) {
         event.preventDefault();
 
+        if (!inputValue) {
+            return alert('Please enter city');
+        }
+
         let venues;
         console.log('searching for ' + inputValue);
+
+        /**
+         * Calls endpoint on backend, which makes 3rd party Calls
+         * Allows hiding of API authorization details via env variables
+         */
         fetch('/api/foursquare/' + inputValue)
             .then(response => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
                 return response.json()
             })
             .then(json => {
-                venues = JSON.parse(json).response.venues;
+                // TODO: SEND VENUES TO REDUX/Make api calls to store ID's in DB
+                venues = json;
                 console.log(venues);
             });
     }

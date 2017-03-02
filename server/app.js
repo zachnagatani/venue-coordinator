@@ -28,6 +28,7 @@ app.get('/', (req, res) => {
     res.sendFile('index.html');
 });
 
+// Call the apiController to handle our API routes/endpoints
 apiController(app);
 
 app.listen(port);
