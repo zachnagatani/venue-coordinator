@@ -1,11 +1,11 @@
-const STORE_VENUES = 'STORE_VENUES';
-function storeVenues(venues) {
+const STORE_VENUE = 'STORE_VENUE';
+function storeVenue(venue) {
     return {
-        type: STORE_VENUES,
+        type: STORE_VENUE,
         payload: {
-            venues
+            venue
         }
     };
 }
 
-export {STORE_VENUES, storeVenues};
+export {STORE_VENUE, storeVenue};

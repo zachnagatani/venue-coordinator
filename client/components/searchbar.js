@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {STORE_VENUE, storeVenue} from './state/actions';
 import TextField from 'material-ui/TextField';
 import SearchButton from './searchButton';
 
@@ -11,6 +13,7 @@ class SearchBar extends React.Component {
         };
 
         this.handleInput = this.handleInput.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
     }
 
     handleInput(event) {
@@ -21,6 +24,7 @@ class SearchBar extends React.Component {
 
     handleSearch(inputValue, event) {
         event.preventDefault();
+        const self = this;
 
         if (!inputValue) {
             return alert('Please enter city');
@@ -41,9 +45,11 @@ class SearchBar extends React.Component {
                 return response.json()
             })
             .then(json => {
-                // TODO: SEND VENUES TO REDUX/Make api calls to store ID's in DB
+                // TODO: Make api calls to store ID's in DB
                 venues = json;
-                console.log(venues);
+                venues.forEach(venue => {
+                    this.props.dispatch(storeVenue(venue));
+                });
             });
     }
 
@@ -62,5 +68,7 @@ class SearchBar extends React.Component {
         );
     }
 };
+
+SearchBar = connect()(SearchBar);
 
 export default SearchBar;

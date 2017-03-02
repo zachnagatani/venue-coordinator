@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import {STORE_VENUES, storeVenue} from './actions';
+import {STORE_VENUE, storeVenue} from './actions';
 
 function venuesReducer(state = [], action) {
     switch(action.type) {
-        case STORE_VENUES:
+        case STORE_VENUE:
             return [
                 ...state,
-                action.payload.venues
+                action.payload.venue
             ]
         default:
             return state;
