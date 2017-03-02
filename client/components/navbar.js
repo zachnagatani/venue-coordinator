@@ -2,6 +2,7 @@ import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import {Link} from 'react-router';
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -25,7 +26,15 @@ class NavBar extends React.Component {
             <div className="navbar">
                 <AppBar title="Venue Coordinator" onLeftIconButtonTouchTap={this.handleToggle} />
                 <Drawer docked={false} open={this.state.open} onRequestChange={(open) => this.setState({open})}>
-                    <MenuItem onTouchTap={this.handleClose}>Hello, World</MenuItem>
+                    <a href="/#/login">
+                        <MenuItem onTouchTap={this.handleClose}>Login</MenuItem>
+                    </a>
+                    <a href="/#/signup">
+                        <MenuItem onTouchTap={this.handleClose}>Signup</MenuItem>
+                    </a>
+                    <a href="/#/venues">
+                        <MenuItem onTouchTap={this.handleClose}>Venues</MenuItem>
+                    </a>
                 </Drawer>
             </div>
         );
