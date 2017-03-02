@@ -38979,16 +38979,54 @@ __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODU
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_TextField__ = __webpack_require__(417);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__searchButton__ = __webpack_require__(473);
+
 
 
 
 class SearchBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            inputValue: ''
+        };
+
+        this.handleInput = this.handleInput.bind(this);
+    }
+
+    handleInput(event) {
+        this.setState({
+            inputValue: event.target.value
+        });
+    }
+
+    handleSearch(inputValue, event) {
+        event.preventDefault();
+
+        let venues;
+        console.log('searching for ' + inputValue);
+        fetch('/api/foursquare/' + inputValue).then(response => {
+            return response.json();
+        }).then(json => {
+            venues = JSON.parse(json).response.venues;
+            console.log(venues);
+        });
     }
 
     render() {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { hintText: 'Enter your city', floatingLabelText: 'Search for Venues', multiLine: true, className: 'search-bar col' });
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'form',
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { hintText: 'Enter your city',
+                floatingLabelText: 'Search for Venues',
+                className: 'search-bar',
+                id: 'search',
+                name: 'search',
+                value: this.state.inputValue,
+                onChange: this.handleInput }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__searchButton__["a" /* default */], { handleSearch: this.handleSearch, inputValue: this.state.inputValue })
+        );
     }
 };
 
@@ -44960,8 +44998,7 @@ const Home = props => {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'container--home' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__searchbar__["a" /* default */], null),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__searchButton__["a" /* default */], null)
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__searchbar__["a" /* default */], null)
         )
     );
 };
@@ -44981,7 +45018,7 @@ const Home = props => {
 
 
 const SearchButton = props => {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_RaisedButton___default.a, { label: 'Search', className: 'btn' });
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_RaisedButton___default.a, { label: 'Search', className: 'btn', primary: true, onClick: event => props.handleSearch(props.inputValue, event) });
 };
 
 /* harmony default export */ __webpack_exports__["a"] = SearchButton;

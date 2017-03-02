@@ -1,5 +1,9 @@
 const passport = require('passport'),
-      Venue = require('../venue/model/venue');
+      Venue = require('../venue/model/venue'),
+      request = require('request'),
+      FOURSQUARE_CLIENT_ID = process.env.FOURSQUARE_CLIENT_ID,
+      FOURSQUARE_CLIENT_SECRET = process.env.FOURSQUARE_CLIENT_SECRET;
+
 
 module.exports = (app) => {
     /** API ENDPOINT CHECK LIST:
@@ -96,6 +100,20 @@ module.exports = (app) => {
             } else {
                 res.send('DAT USER NOT IN DER BRUH');
             }
+        });
+    });
+
+    // Foursquare API "middleman"... call is made on backend to hide API auth info
+    app.get('/api/foursquare/:city', (req, res) => {
+        request('https://api.foursquare.com/v2/venues/search?client_id=' +
+            FOURSQUARE_CLIENT_ID + '&client_secret=' + FOURSQUARE_CLIENT_SECRET +
+            '&query=donuts&near=' + req.params.city + '&v=20170501&',
+            (err, response, body) => {
+                if (err) {
+                    res.send(err);
+                }
+
+                res.json(body);
         });
     });
 };

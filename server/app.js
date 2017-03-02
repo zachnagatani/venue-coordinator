@@ -5,7 +5,10 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       passport = require('passport'),
       initPassport = require('./auth/init'),
-      apiController = require('./api/api');
+      apiController = require('./api/api'),
+      FOURSQUARE_CLIENT_ID = process.env.FOURSQUARE_CLIENT_ID,
+      FOURSQUARE_CLIENT_SECRET = process.env.FOURSQUARE_CLIENT_SECRET;
+      request = require('request');
 
 mongoose.connect(process.env.MONGOLAB_URI);
 

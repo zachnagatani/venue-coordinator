@@ -21,10 +21,6 @@ h1 {
 .btn {
   height: 36px; }
 
-.navbar {
-  position: fixed;
-  width: 100%; }
-
 .flex-grid {
   display: flex;
   align-items: flex-end; }
@@ -56,6 +52,9 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center; }
+
+.search-bar {
+  margin-right: 10px; }
 
 .going-chip {
   float: right; }

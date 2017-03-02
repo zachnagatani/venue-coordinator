@@ -7,7 +7,6 @@ const Home = props => {
         <div className="container">
             <div className="container--home">
                 <SearchBar />
-                <SearchButton />
             </div>
         </div>
     );
