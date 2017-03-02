@@ -77,6 +77,7 @@ module.exports = (app) => {
                     res.json(venue);
                 });
             } else {
+                res.status('409');
                 res.send('DAT USER IN DER BRUH');
             }
         });

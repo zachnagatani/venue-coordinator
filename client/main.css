@@ -58,7 +58,8 @@ h1 {
   margin-right: 10px; }
 
 .going-chip {
-  float: right; }
+  float: right;
+  cursor: pointer !important; }
 
 .venue {
   margin: 40px 0; }

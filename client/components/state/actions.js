@@ -8,6 +8,17 @@ function storeVenue(venue) {
     };
 }
 
+const UPDATE_VENUE = 'UPDATE_VENUE';
+function updateVenue(id, username) {
+    return {
+        type: UPDATE_VENUE,
+        payload: {
+            id,
+            username
+        }
+    };
+}
+
 const CLEAR_VENUES = 'CLEAR_VENUES';
 function clearVenues() {
     return {
@@ -27,6 +38,7 @@ function login(username) {
 
 export {
     STORE_VENUE, storeVenue,
+    UPDATE_VENUE, updateVenue,
     CLEAR_VENUES, clearVenues,
     LOGIN, login
 };

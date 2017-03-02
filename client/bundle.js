@@ -7255,10 +7255,12 @@ const SearchButton = props => {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return STORE_VENUE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return storeVenue; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return CLEAR_VENUES; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return clearVenues; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return LOGIN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return storeVenue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return UPDATE_VENUE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return updateVenue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return CLEAR_VENUES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return clearVenues; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return LOGIN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return login; });
 const STORE_VENUE = 'STORE_VENUE';
 function storeVenue(venue) {
@@ -7266,6 +7268,17 @@ function storeVenue(venue) {
         type: STORE_VENUE,
         payload: {
             venue
+        }
+    };
+}
+
+const UPDATE_VENUE = 'UPDATE_VENUE';
+function updateVenue(id, username) {
+    return {
+        type: UPDATE_VENUE,
+        payload: {
+            id,
+            username
         }
     };
 }
@@ -10946,7 +10959,7 @@ class SearchBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
             return alert('Please enter city');
         }
 
-        this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__state_actions__["e" /* clearVenues */])());
+        this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__state_actions__["g" /* clearVenues */])());
 
         let venues;
         console.log('searching for ' + inputValue);
@@ -10979,7 +10992,7 @@ class SearchBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
                 }).then(json => {
                     venue.count = json.count;
                     venue.users = json.users;
-                    this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__state_actions__["f" /* storeVenue */])(venue));
+                    this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__state_actions__["h" /* storeVenue */])(venue));
                 }).then(() => {
                     __WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* hashHistory */].push('/venues');
                 });
@@ -16794,11 +16807,9 @@ class Signup extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
 let store = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["b" /* createStore */])(__WEBPACK_IMPORTED_MODULE_1__reducers__["a" /* default */]);
 
-// console.log(store.getState());
+console.log(store.getState());
 
-// let unsubscribe = store.subscribe(() =>
-//   console.log(store.getState())
-// );
+let unsubscribe = store.subscribe(() => console.log(store.getState()));
 
 /* harmony default export */ __webpack_exports__["a"] = store;
 
@@ -16819,10 +16830,33 @@ let store = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["b" /* cre
 
 const Venues = props => {
     const VenueItems = props.venues.map(venue => {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__venue__["a" /* default */], { key: venue.id, title: venue.name,
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__venue__["a" /* default */], { key: venue.id,
+            title: venue.name,
             subtitle: venue.location.address,
-            count: venue.count });
+            count: venue.count,
+            venueId: venue.id,
+            user: props.user,
+            handleClick: handleChipClick });
     });
+
+    function handleChipClick(venueId, username) {
+        console.log('clicked');
+        fetch('/api/venue/increment', {
+            method: 'PATCH',
+            body: JSON.stringify({
+                venueId: venueId,
+                username: username
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            return response.json();
+        }).then(json => {
+            console.log(json);
+            props.onChipClick(venueId, username);
+        });
+    }
 
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
@@ -17308,8 +17342,22 @@ function venuesReducer(state = [], action) {
     switch (action.type) {
         case __WEBPACK_IMPORTED_MODULE_1__actions__["b" /* STORE_VENUE */]:
             return [...state, action.payload.venue];
-        case __WEBPACK_IMPORTED_MODULE_1__actions__["c" /* CLEAR_VENUES */]:
+            break;
+        case __WEBPACK_IMPORTED_MODULE_1__actions__["c" /* UPDATE_VENUE */]:
+            return state.map(venue => {
+                if (venue.id === action.payload.id) {
+                    return Object.assign({}, venue, {
+                        count: venue.count + 1,
+                        users: [...venue.users, action.payload.username]
+                    });
+                }
+
+                return venue;
+            });
+            break;
+        case __WEBPACK_IMPORTED_MODULE_1__actions__["d" /* CLEAR_VENUES */]:
             return [];
+            break;
         default:
             return state;
     }
@@ -17317,7 +17365,7 @@ function venuesReducer(state = [], action) {
 
 function userReducer(state = { loggedIn: false, username: null }, action) {
     switch (action.type) {
-        case __WEBPACK_IMPORTED_MODULE_1__actions__["d" /* LOGIN */]:
+        case __WEBPACK_IMPORTED_MODULE_1__actions__["e" /* LOGIN */]:
             return {
                 loggedIn: true,
                 username: action.payload.username
@@ -17359,7 +17407,7 @@ const Venue = props => {
             { className: 'clearfix' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_2_material_ui_Chip___default.a,
-                { className: 'going-chip' },
+                { className: 'going-chip', onClick: () => props.handleClick(props.venueId, props.user.username) },
                 props.count,
                 ' Going'
             )
@@ -50019,17 +50067,26 @@ __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODU
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_redux__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__venues__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__state_actions__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__venues__ = __webpack_require__(224);
+
 
 
 
 const mapStateToProps = state => {
     return {
+        user: state.user,
         venues: state.venues
     };
 };
 
-const VenuesContainer = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_react_redux__["b" /* connect */])(mapStateToProps)(__WEBPACK_IMPORTED_MODULE_1__venues__["a" /* default */]);
+const mapDispatchtoProps = dispatch => {
+    return {
+        onChipClick: (id, username) => dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__state_actions__["f" /* updateVenue */])(id, username))
+    };
+};
+
+const VenuesContainer = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_react_redux__["b" /* connect */])(mapStateToProps, mapDispatchtoProps)(__WEBPACK_IMPORTED_MODULE_2__venues__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["a"] = VenuesContainer;
 
