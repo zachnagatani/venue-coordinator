@@ -9,7 +9,7 @@ const Venues = props => {
             subtitle={venue.location.address}
             count={venue.count} />
     });
-    console.log(props.venues);
+
     return (
         <div className="container">
             <div className="flex-grid">

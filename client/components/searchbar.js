@@ -1,7 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {hashHistory} from 'react-router';
-import {STORE_VENUE, storeVenue} from './state/actions';
+import {
+    STORE_VENUE, storeVenue,
+    CLEAR_VENUES, clearVenues
+} from './state/actions';
 import TextField from 'material-ui/TextField';
 import SearchButton from './searchButton';
 
@@ -29,6 +32,8 @@ class SearchBar extends React.Component {
         if (!inputValue) {
             return alert('Please enter city');
         }
+
+        this.props.dispatch(clearVenues());
 
         let venues;
         console.log('searching for ' + inputValue);

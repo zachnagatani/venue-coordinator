@@ -8,4 +8,14 @@ function storeVenue(venue) {
     };
 }
 
-export {STORE_VENUE, storeVenue};
+const CLEAR_VENUES = 'CLEAR_VENUES';
+function clearVenues() {
+    return {
+        type: CLEAR_VENUES
+    };
+}
+
+export {
+    STORE_VENUE, storeVenue,
+    CLEAR_VENUES, clearVenues
+};

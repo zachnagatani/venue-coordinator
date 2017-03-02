@@ -7255,7 +7255,9 @@ const SearchButton = props => {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return STORE_VENUE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return storeVenue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return storeVenue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return CLEAR_VENUES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return clearVenues; });
 const STORE_VENUE = 'STORE_VENUE';
 function storeVenue(venue) {
     return {
@@ -7263,6 +7265,13 @@ function storeVenue(venue) {
         payload: {
             venue
         }
+    };
+}
+
+const CLEAR_VENUES = 'CLEAR_VENUES';
+function clearVenues() {
+    return {
+        type: CLEAR_VENUES
     };
 }
 
@@ -10925,6 +10934,8 @@ class SearchBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
             return alert('Please enter city');
         }
 
+        this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__state_actions__["c" /* clearVenues */])());
+
         let venues;
         console.log('searching for ' + inputValue);
 
@@ -10956,7 +10967,7 @@ class SearchBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
                 }).then(json => {
                     venue.count = json.count;
                     venue.users = json.users;
-                    this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__state_actions__["b" /* storeVenue */])(venue));
+                    this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__state_actions__["d" /* storeVenue */])(venue));
                 });
             });
 
@@ -16800,7 +16811,7 @@ const Venues = props => {
             subtitle: venue.location.address,
             count: venue.count });
     });
-    console.log(props.venues);
+
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'container' },
@@ -17109,6 +17120,8 @@ function venuesReducer(state = [], action) {
     switch (action.type) {
         case __WEBPACK_IMPORTED_MODULE_1__actions__["a" /* STORE_VENUE */]:
             return [...state, action.payload.venue];
+        case __WEBPACK_IMPORTED_MODULE_1__actions__["b" /* CLEAR_VENUES */]:
+            return [];
         default:
             return state;
     }

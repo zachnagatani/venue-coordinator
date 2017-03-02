@@ -34,7 +34,6 @@ module.exports = (app) => {
                 return console.log(err);
             }
             if (venue) {
-                res.status(409);
                 res.json(venue);
                 return;
             }

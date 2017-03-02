@@ -1,6 +1,9 @@
 import {createStore} from 'redux';
 import venueCoordinator from './reducers';
-import {STORE_VENUE, storeVenue} from './actions';
+import {
+    STORE_VENUE, storeVenue,
+    CLEAR_VENUES, clearVenues
+} from './actions';
 
 let store = createStore(venueCoordinator);
 

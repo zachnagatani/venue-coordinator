@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux';
-import {STORE_VENUE, storeVenue} from './actions';
+import {
+    STORE_VENUE, storeVenue,
+    CLEAR_VENUES, clearVenues
+} from './actions';
 
 function venuesReducer(state = [], action) {
     switch(action.type) {
@@ -7,7 +10,9 @@ function venuesReducer(state = [], action) {
             return [
                 ...state,
                 action.payload.venue
-            ]
+            ];
+        case CLEAR_VENUES:
+            return [];
         default:
             return state;
     }
