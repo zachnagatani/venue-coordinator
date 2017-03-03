@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {hashHistory} from 'react-router';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import {Link} from 'react-router';
 import auth from '../services/auth';
 import {LOGIN, login} from './state/actions';
 
@@ -81,8 +82,12 @@ class LoginForm extends React.Component {
                         type="password"
                         value={this.state.password}
                         onChange={(event) => this.handleInput('password', event)} />
-                    <RaisedButton primary={true} label="Login" onClick={() => this.handleSubmit(this.state.username, this.state.password)} />
+                    <RaisedButton primary={true}
+                        label="Login"
+                        className="form-btn"
+                        onClick={() => this.handleSubmit(this.state.username, this.state.password)} />
                 </form>
+                <p className="redirect-link">Not a member yet? <Link to="/signup">Sign Up.</Link></p>
             </main>
         );
     }
