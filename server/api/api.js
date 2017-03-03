@@ -53,7 +53,7 @@ module.exports = (app) => {
     });
 
     // Updates a Venue's count and users property when someone indicates they are going
-    app.patch('/api/venue/increment', (req, res) => {
+    app.patch('/api/venue/going', (req, res) => {
         Venue.findById({
             _id: req.body.venueId
         }, (err, venue) => {
@@ -71,14 +71,33 @@ module.exports = (app) => {
                     new: true
                 }, (err, venue) => {
                     if (err) {
+                        res.send(err);
                         return console.log(err);
                     }
 
-                    res.json(venue);
+                    res.json({
+                        venue,
+                        action: 'increment'
+                    });
                 });
-            } else {
-                res.status('409');
-                res.send('DAT USER IN DER BRUH');
+            } else if (venue.users.includes(req.body.username)) {
+                Venue.findByIdAndUpdate({
+                    _id: req.body.venueId,
+                }, {
+                    $inc: {count: -1},
+                    $pull: {users: req.body.username}
+                }, {
+                    new: true
+                }, (err, venue) => {
+                    if (err) {
+                        return console.log(err);
+                    }
+
+                    res.json({
+                        venue,
+                        action: 'decrement'
+                    });
+                });
             }
         });
     });

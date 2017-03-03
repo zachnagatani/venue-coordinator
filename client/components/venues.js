@@ -1,4 +1,5 @@
 import React from 'react';
+import {hashHistory} from 'react-router';
 import SearchBar from './searchbar';
 import SearchButton from './searchButton';
 import Venue from './venue';
@@ -15,8 +16,12 @@ const Venues = props => {
     });
 
     function handleChipClick(venueId, username) {
-        console.log('clicked');
-        fetch('/api/venue/increment', {
+        if (!props.user.loggedIn) {
+            hashHistory.push('/login');
+            return;
+        }
+
+        fetch('/api/venue/going', {
             method: 'PATCH',
             body: JSON.stringify({
                 venueId: venueId,
@@ -29,7 +34,7 @@ const Venues = props => {
             return response.json();
         }).then(json => {
             console.log(json);
-            props.onChipClick(venueId, username);
+            props.onChipClick(venueId, username, json.action);
         });
     }
 

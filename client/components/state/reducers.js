@@ -17,10 +17,17 @@ function venuesReducer(state = [], action) {
         case UPDATE_VENUE:
             return state.map(venue => {
                 if (venue.id === action.payload.id) {
-                    return Object.assign({}, venue, {
-                        count: venue.count + 1,
-                        users: [...venue.users, action.payload.username]
-                    });
+                    if (action.payload.action === 'increment') {
+                        return Object.assign({}, venue, {
+                            count: venue.count + 1,
+                            users: [...venue.users, action.payload.username]
+                        });
+                    } else if (action.payload.action === 'decrement') {
+                        return Object.assign({}, venue, {
+                            count: venue.count - 1,
+                            users: venue.users.filter(user => {return user !== action.payload.username})
+                        });
+                    }
                 }
 
                 return venue;

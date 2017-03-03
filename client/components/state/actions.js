@@ -9,12 +9,13 @@ function storeVenue(venue) {
 }
 
 const UPDATE_VENUE = 'UPDATE_VENUE';
-function updateVenue(id, username) {
+function updateVenue(id, username, action) {
     return {
         type: UPDATE_VENUE,
         payload: {
             id,
-            username
+            username,
+            action
         }
     };
 }

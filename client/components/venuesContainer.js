@@ -11,7 +11,7 @@ const mapStateToProps = state => {
 
 const mapDispatchtoProps = dispatch => {
     return {
-        onChipClick: (id, username) => dispatch(updateVenue(id, username))
+        onChipClick: (id, username, action) => dispatch(updateVenue(id, username, action))
     };
 };
 
