@@ -21,6 +21,10 @@ h1 {
 .btn {
   height: 36px; }
 
+.navbar {
+  position: fixed;
+  width: 100%; }
+
 .flex-grid {
   display: flex;
   align-items: flex-end;
@@ -39,6 +43,8 @@ h1 {
     text-align: center; }
   .col {
     width: 100% !important; }
+  .search-bar__form {
+    text-align: center; }
   .search-bar {
     text-align: left; } }
 

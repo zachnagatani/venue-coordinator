@@ -79,7 +79,7 @@ class SearchBar extends React.Component {
 
     render() {
         return (
-            <form method="POST" action="" onSubmit={(event) => {event.preventDefault(); this.handleSearch(this.state.inputValue);}}>
+            <form className="search-bar__form" method="POST" action="" onSubmit={(event) => {event.preventDefault(); this.handleSearch(this.state.inputValue);}}>
                 <TextField hintText="Enter your city"
                     floatingLabelText="Search for Venues"
                     className="search-bar"

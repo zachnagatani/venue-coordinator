@@ -30,10 +30,10 @@ h1 {
     height: 36px;
 }
 
-// .navbar {
-//     position: fixed;
-//     width: 100%;
-// }
+.navbar {
+    position: fixed;
+    width: 100%;
+}
 
 // Flex Grid System: from CSS Tricks @ https://css-tricks.com/dont-overthink-flexbox-grids/
 .flex-grid {
@@ -63,6 +63,10 @@ h1 {
   }
 
   // Fix search-bar text alignment
+  .search-bar__form {
+    text-align: center;
+  }
+
   .search-bar {
       text-align: left;
   }
