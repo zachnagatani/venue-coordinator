@@ -32,9 +32,7 @@ const auth = {
             payload = window.atob(payload);
             payload = JSON.parse(payload);
 
-            return {
-                username: payload.username,
-            };
+            return payload.username;
         }
     }
 };

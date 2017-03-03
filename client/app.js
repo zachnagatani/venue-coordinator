@@ -5,6 +5,8 @@ import store from './components/state/store';
 import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import auth from './services/auth';
+import {login} from './components/state/actions';
 import NavBar from './components/navbar';
 import Home from './components/home';
 import VenuesContainer from './components/venuesContainer';
@@ -14,6 +16,15 @@ import Login from './components/login';
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
+
+
+// Checks login on app load for persistence
+function checkLoginAndDispatch() {
+    if (auth.isLoggedIn()) {
+        store.dispatch(login(auth.currentUser()));
+    }
+}
+checkLoginAndDispatch();
 
 const App = () => {
     return (

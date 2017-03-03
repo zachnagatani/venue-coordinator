@@ -7,7 +7,7 @@ const express = require('express'),
       initPassport = require('./auth/init'),
       apiController = require('./api/api'),
       FOURSQUARE_CLIENT_ID = process.env.FOURSQUARE_CLIENT_ID,
-      FOURSQUARE_CLIENT_SECRET = process.env.FOURSQUARE_CLIENT_SECRET;;
+      FOURSQUARE_CLIENT_SECRET = process.env.FOURSQUARE_CLIENT_SECRET;
 
 mongoose.connect(process.env.MONGOLAB_URI);
 

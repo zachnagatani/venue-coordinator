@@ -3409,13 +3409,13 @@ exports.default = _shallowEqual2.default;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return STORE_VENUE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return storeVenue; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return UPDATE_VENUE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return updateVenue; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return CLEAR_VENUES; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return clearVenues; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return LOGIN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return STORE_VENUE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return storeVenue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return UPDATE_VENUE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return updateVenue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return CLEAR_VENUES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return clearVenues; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return LOGIN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return login; });
 const STORE_VENUE = 'STORE_VENUE';
 function storeVenue(venue) {
@@ -11048,7 +11048,7 @@ class SearchBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
             return alert('Please enter city');
         }
 
-        this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__state_actions__["g" /* clearVenues */])());
+        this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__state_actions__["c" /* clearVenues */])());
 
         let venues;
         console.log('searching for ' + inputValue);
@@ -11081,7 +11081,7 @@ class SearchBar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
                 }).then(json => {
                     venue.count = json.count;
                     venue.users = json.users;
-                    this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__state_actions__["h" /* storeVenue */])(venue));
+                    this.props.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__state_actions__["d" /* storeVenue */])(venue));
                 }).then(() => {
                     __WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* hashHistory */].push('/venues');
                 });
@@ -11150,9 +11150,7 @@ const auth = {
             payload = window.atob(payload);
             payload = JSON.parse(payload);
 
-            return {
-                username: payload.username
-            };
+            return payload.username;
         }
     }
 };
@@ -16995,7 +16993,7 @@ const mapStateToProps = state => {
 
 const mapDispatchtoProps = dispatch => {
     return {
-        onChipClick: (id, username, action) => dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__state_actions__["f" /* updateVenue */])(id, username, action))
+        onChipClick: (id, username, action) => dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__state_actions__["b" /* updateVenue */])(id, username, action))
     };
 };
 
@@ -17383,10 +17381,10 @@ SignupForm = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b"
 
 function venuesReducer(state = [], action) {
     switch (action.type) {
-        case __WEBPACK_IMPORTED_MODULE_1__actions__["b" /* STORE_VENUE */]:
+        case __WEBPACK_IMPORTED_MODULE_1__actions__["e" /* STORE_VENUE */]:
             return [...state, action.payload.venue];
             break;
-        case __WEBPACK_IMPORTED_MODULE_1__actions__["c" /* UPDATE_VENUE */]:
+        case __WEBPACK_IMPORTED_MODULE_1__actions__["f" /* UPDATE_VENUE */]:
             return state.map(venue => {
                 if (venue.id === action.payload.id) {
                     if (action.payload.action === 'increment') {
@@ -17407,7 +17405,7 @@ function venuesReducer(state = [], action) {
                 return venue;
             });
             break;
-        case __WEBPACK_IMPORTED_MODULE_1__actions__["d" /* CLEAR_VENUES */]:
+        case __WEBPACK_IMPORTED_MODULE_1__actions__["g" /* CLEAR_VENUES */]:
             return [];
             break;
         default:
@@ -17417,7 +17415,7 @@ function venuesReducer(state = [], action) {
 
 function userReducer(state = { loggedIn: false, username: null }, action) {
     switch (action.type) {
-        case __WEBPACK_IMPORTED_MODULE_1__actions__["e" /* LOGIN */]:
+        case __WEBPACK_IMPORTED_MODULE_1__actions__["h" /* LOGIN */]:
             return {
                 loggedIn: true,
                 username: action.payload.username
@@ -50124,11 +50122,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_styles_MuiThemeProvider___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_styles_MuiThemeProvider__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_tap_event_plugin__ = __webpack_require__(228);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_tap_event_plugin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react_tap_event_plugin__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_navbar__ = __webpack_require__(223);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_home__ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_venuesContainer__ = __webpack_require__(226);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_signup__ = __webpack_require__(224);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_login__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_auth__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_state_actions__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_navbar__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_home__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_venuesContainer__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_signup__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_login__ = __webpack_require__(222);
+
+
 
 
 
@@ -50146,6 +50148,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // http://stackoverflow.com/a/34015469/988941
 __WEBPACK_IMPORTED_MODULE_6_react_tap_event_plugin___default()();
 
+// Checks login on app load for persistence
+function checkLoginAndDispatch() {
+    if (__WEBPACK_IMPORTED_MODULE_7__services_auth__["a" /* default */].isLoggedIn()) {
+        __WEBPACK_IMPORTED_MODULE_3__components_state_store__["a" /* default */].dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8__components_state_actions__["a" /* login */])(__WEBPACK_IMPORTED_MODULE_7__services_auth__["a" /* default */].currentUser()));
+    }
+}
+checkLoginAndDispatch();
+
 const App = () => {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_5_material_ui_styles_MuiThemeProvider___default.a,
@@ -50153,20 +50163,20 @@ const App = () => {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_navbar__["a" /* default */], null),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__components_navbar__["a" /* default */], null),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_2_react_router__["a" /* Router */],
                 { history: __WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* hashHistory */] },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["c" /* Route */], { path: '/', component: __WEBPACK_IMPORTED_MODULE_8__components_home__["a" /* default */] }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["c" /* Route */], { path: '/', component: __WEBPACK_IMPORTED_MODULE_10__components_home__["a" /* default */] }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["c" /* Route */], { path: '/venues',
-                    component: __WEBPACK_IMPORTED_MODULE_9__components_venuesContainer__["a" /* default */],
+                    component: __WEBPACK_IMPORTED_MODULE_11__components_venuesContainer__["a" /* default */],
                     onEnter: () => {
                         if (!__WEBPACK_IMPORTED_MODULE_3__components_state_store__["a" /* default */].getState().venues.length) {
                             __WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* hashHistory */].push('/');
                         }
                     } }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["c" /* Route */], { path: '/signup', component: __WEBPACK_IMPORTED_MODULE_10__components_signup__["a" /* default */] }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["c" /* Route */], { path: '/login', component: __WEBPACK_IMPORTED_MODULE_11__components_login__["a" /* default */] })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["c" /* Route */], { path: '/signup', component: __WEBPACK_IMPORTED_MODULE_12__components_signup__["a" /* default */] }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["c" /* Route */], { path: '/login', component: __WEBPACK_IMPORTED_MODULE_13__components_login__["a" /* default */] })
             )
         )
     );
