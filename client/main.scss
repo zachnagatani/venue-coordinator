@@ -1,5 +1,9 @@
-// Global Styles
+// Mixins
+@mixin navbar-offset() {
+    margin-top: -64px;
+}
 
+// Global Styles
 html {
     height: 100%;
 }
@@ -28,11 +32,6 @@ h1 {
 
 .btn {
     height: 36px;
-}
-
-.navbar {
-    position: fixed;
-    width: 100%;
 }
 
 // Flex Grid System: from CSS Tricks @ https://css-tricks.com/dont-overthink-flexbox-grids/
@@ -82,6 +81,7 @@ h1 {
 // Home Styles
 .container--home {
     height: 100%;
+    @include navbar-offset();
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -109,6 +109,7 @@ h1 {
 // Signup/Login Styles
 .container--signup, .container--login {
     display: flex;
+    @include navbar-offset();
 }
 
 .main--signup, .main--login {

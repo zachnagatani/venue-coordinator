@@ -21,10 +21,6 @@ h1 {
 .btn {
   height: 36px; }
 
-.navbar {
-  position: fixed;
-  width: 100%; }
-
 .flex-grid {
   display: flex;
   align-items: flex-end;
@@ -55,6 +51,7 @@ h1 {
 
 .container--home {
   height: 100%;
+  margin-top: -64px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,7 +71,8 @@ h1 {
   margin-top: 0; }
 
 .container--signup, .container--login {
-  display: flex; }
+  display: flex;
+  margin-top: -64px; }
 
 .main--signup, .main--login {
   margin: auto; }

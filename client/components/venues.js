@@ -39,7 +39,7 @@ const Venues = props => {
     }
 
     return (
-        <div className="container">
+        <div className="container container--venues">
             <div className="flex-grid">
                 <SearchBar />
             </div>

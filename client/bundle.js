@@ -17384,7 +17384,7 @@ const Venues = props => {
 
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
-        { className: 'container' },
+        { className: 'container container--venues' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'flex-grid' },
